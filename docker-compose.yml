@@ -1,0 +1,19 @@
+version: "3"
+services:
+  web1:
+    build: ./app1
+    ports:
+      - "8080:80"
+
+  web2:
+    build: ./app2
+    ports:
+      - "8088:80"
+
+  lb:
+    depends_on:
+      - web1
+      - web2
+    build: ./nginx
+    ports:
+      - "80:80"
